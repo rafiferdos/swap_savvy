@@ -51,7 +51,7 @@ const Navbar = () => {
                     </div>
                     <Link to='/' className="btn btn-ghost hover:bg-transparent flex items-center justify-center cursor-pointer">
                         <img className="h-8 lg:h-10" src={logo} alt="" />
-                        <a className="text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-tr font-extrabold from-purple-800 to-purple-300">SwapSavvy</a>
+                        <a className="text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-tr font-extrabold from-purple-300 bg-300% animate-gradient to-violet-900">SwapSavvy</a>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -70,22 +70,24 @@ const Navbar = () => {
                     {
                         user ?
                             <>
-                                <div className="dropdown dropdown-end">
-                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom items-center flex" data-tip={user?.displayName || "No Username"}>
-                                        <div className="w-10 rounded-full">
-                                            <img alt="Tailwind CSS Navbar component" src={user?.photoURL || blankUser} referrerPolicy="no-referrer" />
+                                <div className="dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200 rounded-2xl px-4 py-1 bg-purple-50">
+                                    {user?.displayName}
+                                    <div>
+                                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom items-center flex ring-2 ring-purple-500" data-tip={user?.displayName || "No Username"}>
+                                            <div className="w-10 rounded-full">
+                                                <img alt="Tailwind CSS Navbar component" src={user?.photoURL || blankUser} referrerPolicy="no-referrer" />
+                                            </div>
                                         </div>
+                                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
+                                            <li><NavLink to='/my_posted_jobs'>My Posted Jobs</NavLink></li>
+                                            <li><NavLink to='/my_bids'>My Bids</NavLink></li>
+                                            <li onClick={logOut}><a>Logout</a></li>
+                                        </ul>
                                     </div>
-                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
-
-                                        <li><NavLink to='/my_posted_jobs'>My Posted Jobs</NavLink></li>
-                                        <li><NavLink to='/my_bids'>My Bids</NavLink></li>
-                                        <li onClick={logOut}><a>Logout</a></li>
-                                    </ul>
                                 </div>
                             </>
                             :
-                            <Link to='/login' className="btn btn-ghost hover:bg-transparent hover:bg-base-200"><LuUserPlus2 className="text-xl" /><p>Login</p></Link>
+                            <Link to='/login' className={theme === 'light' ? "btn btn-ghost md:ml-3 hover:bg-purple-100 rounded-full" : "btn btn-ghost md:ml-3 hover:bg-purple-950 rounded-full"}><LuUserPlus2 className="text-xl" /><p>Login</p></Link>
                     }
                 </div>
             </div>

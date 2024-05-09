@@ -6,9 +6,7 @@ const Main = () => {
     return (
         <>
             <Navbar />
-
-            {/* //! give it min height */}
-            <div className="">
+            <div className="lg:min-h-[calc(100vh-429px)]">
                 <Outlet />
             </div>
             <Footer />

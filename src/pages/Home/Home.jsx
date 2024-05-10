@@ -1,5 +1,6 @@
 import Banner from "./Banner";
 import Carousel from "./Carousel";
+import Features from "./Features";
 import Testimonial from "./Testimonial";
 
 const Home = () => {
@@ -10,6 +11,9 @@ const Home = () => {
             </div>
             <div className="flex items-center justify-center">
                 <Banner />
+            </div>
+            <div className="flex items-center justify-center">
+                <Features />
             </div>
             <div className="flex items-center justify-center">
                 <Testimonial />

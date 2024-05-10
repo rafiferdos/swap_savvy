@@ -6,7 +6,6 @@ import { useContext, useEffect } from "react";
 import { ThemeContext } from "../provider/ThemeProvider";
 import { AuthContext } from "../provider/AuthProvider";
 
-
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const { theme, setTheme } = useContext(ThemeContext)
@@ -25,10 +24,7 @@ const Navbar = () => {
     const links =
         <>
             <NavLink to='/' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Home</a></NavLink>
-            <NavLink to='/add_jobs' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Add Jobs</a></NavLink>
-            {/* <NavLink to='/my_posted_jobs' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>My Posted Jobs</a></NavLink>
-            <NavLink to='/my_bids' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>My Bids</a></NavLink> */}
-            <NavLink to='/bid_requests' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Bid Requests</a></NavLink>
+            <NavLink to='/queries' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Queries</a></NavLink>
         </>
 
     return (
@@ -51,7 +47,7 @@ const Navbar = () => {
                     </div>
                     <Link to='/' className="btn btn-ghost hover:bg-transparent flex items-center justify-center cursor-pointer">
                         <img className="h-8 lg:h-10" src={logo} alt="" />
-                        <a className="text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-tr font-extrabold from-purple-300 bg-300% animate-gradient to-violet-900">SwapSavvy</a>
+                        <a className="text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-tr font-extrabold from-purple-300 bg-300% animate-gradient to-violet-900">Swap Savvy</a>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -70,7 +66,7 @@ const Navbar = () => {
                     {
                         user ?
                             <>
-                                <div className="dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200 rounded-2xl px-4 py-1 bg-purple-50">
+                                <div className={theme === 'light' ? "dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200 rounded-2xl px-4 py-1 bg-purple-100/60" : "dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200/30 rounded-2xl px-4 py-1 bg-purple-500/15"}>
                                     {user?.displayName}
                                     <div>
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom items-center flex ring-2 ring-purple-500" data-tip={user?.displayName || "No Username"}>
@@ -79,8 +75,10 @@ const Navbar = () => {
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
-                                            <li><NavLink to='/my_posted_jobs'>My Posted Jobs</NavLink></li>
-                                            <li><NavLink to='/my_bids'>My Bids</NavLink></li>
+                                            <li><NavLink to='/recommendations_for_me'>Recommendations For Me</NavLink></li>
+                                            <li><NavLink to='/my_queries'>My Queries</NavLink></li>
+                                            <li><NavLink to='/my_recommendations'>My Recommendations</NavLink></li>
+                                            <hr className="my-2" />
                                             <li onClick={logOut}><a>Logout</a></li>
                                         </ul>
                                     </div>

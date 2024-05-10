@@ -66,7 +66,7 @@ const Navbar = () => {
                     {
                         user ?
                             <>
-                                <div className={theme === 'light' ? "dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200 rounded-2xl px-4 py-1 bg-purple-100/60" : "dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200/30 rounded-2xl px-4 py-1 bg-purple-500/15"}>
+                                <div className={theme === 'light' ? "dropdown dropdown-end md:ml-3 flex items-center gap-4 md:border md:border-purple-200 rounded-2xl px-4 py-1 md:bg-purple-100/60" : "dropdown dropdown-end md:ml-3 flex items-center gap-4 md:border md:border-purple-200/30 rounded-2xl px-4 py-1 md:bg-purple-500/15"}>
                                     <span className="md:inline-block hidden">{user?.displayName}</span>
                                     <div>
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom items-center flex ring-2 ring-purple-500" data-tip={user?.displayName || "No Username"}>

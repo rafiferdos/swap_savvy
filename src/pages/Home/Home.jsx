@@ -1,10 +1,14 @@
+import Banner from "./Banner";
 import Carousel from "./Carousel";
 
 const Home = () => {
     return (
-        <div className="md:space-y-10 space-y-7 w-11/12 max-w-7xl container mx-auto">
-            <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
+        <div className="space-y-10 md:space-y-16 lg:space-y-20 w-11/12 max-w-7xl container mx-auto">
+            <div className="flex items-center justify-center mt-8 md:mt-16 lg:mt-24">
                 <Carousel />
+            </div>
+            <div className="flex items-center justify-center">
+                <Banner />
             </div>
             
         </div>

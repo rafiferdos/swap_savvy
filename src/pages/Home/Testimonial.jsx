@@ -16,7 +16,7 @@ const Testimonial = () => {
                                         <img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
                                         <div>
                                             <p className="text-lg font-semibold">Lara Salley</p>
-                                            <p className="text-sm text-gray-400">CTO of Company Co.</p>
+                                            <p className="text-sm text-gray-400">Graphics Designer</p>
                                         </div>
                                     </div>
                                 </div>
@@ -25,8 +25,8 @@ const Testimonial = () => {
                                     <div className="flex items-center mt-4 space-x-4">
                                         <img src="https://source.unsplash.com/50x50/?portrait?2" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
                                         <div>
-                                            <p className="text-lg font-semibold">Demon Salvador</p>
-                                            <p className="text-sm text-gray-400">CTO of Company Co.</p>
+                                            <p className="text-lg font-semibold">Damon Salvador</p>
+                                            <p className="text-sm text-gray-400">App Developer</p>
                                         </div>
                                     </div>
                                 </div>
@@ -37,8 +37,8 @@ const Testimonial = () => {
                                     <div className="flex items-center mt-4 space-x-4">
                                         <img src="https://source.unsplash.com/50x50/?portrait?3" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
                                         <div>
-                                            <p className="text-lg font-semibold">Sezza Hui</p>
-                                            <p className="text-sm text-gray-400">CTO of Company Co.</p>
+                                            <p className="text-lg font-semibold">Raiden Shogun</p>
+                                            <p className="text-sm text-gray-400">CEO of Genshin Impact</p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,8 +47,8 @@ const Testimonial = () => {
                                     <div className="flex items-center mt-4 space-x-4">
                                         <img src="https://source.unsplash.com/50x50/?portrait?4" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
                                         <div>
-                                            <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                            <p className="text-sm text-gray-400">CTO of Company Co.</p>
+                                            <p className="text-lg font-semibold">Sarah Khan</p>
+                                            <p className="text-sm text-gray-400">CEO of Coogle</p>
                                         </div>
                                     </div>
                                 </div>

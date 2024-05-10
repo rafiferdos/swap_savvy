@@ -67,14 +67,14 @@ const Navbar = () => {
                         user ?
                             <>
                                 <div className={theme === 'light' ? "dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200 rounded-2xl px-4 py-1 bg-purple-100/60" : "dropdown dropdown-end md:ml-3 flex items-center gap-4 border border-purple-200/30 rounded-2xl px-4 py-1 bg-purple-500/15"}>
-                                    {user?.displayName}
+                                    <span className="md:inline-block hidden">{user?.displayName}</span>
                                     <div>
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom items-center flex ring-2 ring-purple-500" data-tip={user?.displayName || "No Username"}>
                                             <div className="w-10 rounded-full">
                                                 <img alt="Tailwind CSS Navbar component" src={user?.photoURL || blankUser} referrerPolicy="no-referrer" />
                                             </div>
                                         </div>
-                                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
+                                        <ul tabIndex={0} className="mt-3 z-[1] gap-1 p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
                                             <li><NavLink to='/recommendations_for_me'>Recommendations For Me</NavLink></li>
                                             <li><NavLink to='/my_queries'>My Queries</NavLink></li>
                                             <li><NavLink to='/my_recommendations'>My Recommendations</NavLink></li>

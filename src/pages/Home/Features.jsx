@@ -7,7 +7,7 @@ const Features = () => {
     const {theme} = useContext(ThemeContext);
     return (
         <section className={theme === 'light' ? "bg-purple-50 text-base-content rounded-3xl" : "bg-purple-950/30 text-base-content rounded-3xl"}>
-            <div className="container max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
+            <div className="container max-w-2xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
                 <div>
                     <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl text-primary">What We Feature</h2>
                     <p className="max-w-3xl mx-auto mt-4 text-xl text-center text-secondary">Still not convinced? Take a look at our provided features that we offer</p>

@@ -5,7 +5,7 @@ import axios from "axios";
 const All_Queries = () => {
 
     const [queries, setQueries] = useState([])
-
+    
     useEffect(() => {
         const getData = async () => {
             const {data} = await axios(`${import.meta.env.VITE_API_URL}/queries`)
@@ -21,7 +21,7 @@ const All_Queries = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {
                         queries.map((query) => {
-                            return <QueryCard query={query} key={query.id} />
+                            return <QueryCard query={query} key={query._id} />
                         })
                     }
                 </div>

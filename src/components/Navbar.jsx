@@ -76,7 +76,7 @@ const Navbar = () => {
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className="mt-3 z-[1] gap-1 p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
-                                            <li><NavLink to='/recommendations_for_me'>Recommendations For Me</NavLink></li>
+                                            {/* <li><NavLink to='/recommendations_for_me'>Recommendations For Me</NavLink></li> */}
                                             <li><NavLink to='/my_queries'>My Queries</NavLink></li>
                                             <li><NavLink to='/my_recommendations'>My Recommendations</NavLink></li>
                                             <hr className="my-2" />

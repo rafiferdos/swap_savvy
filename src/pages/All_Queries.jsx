@@ -1,9 +1,18 @@
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 import QueryCard from "../components/QueryCard";
+import axios from "axios";
 
 const All_Queries = () => {
 
-    const queries = useLoaderData()
+    const [queries, setQueries] = useState([])
+
+    useEffect(() => {
+        const getData = async () => {
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/queries`)
+            setQueries(data)
+        }
+        getData()
+    }, [])
 
     return (
         <div className="container mx-auto w-11/12 max-w-7xl">

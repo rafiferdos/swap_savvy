@@ -7,6 +7,8 @@ import ErrorPage from "../pages/ErrorPage"
 import MyQueries from "../pages/MyQueries/MyQueries"
 import AddQueries from "../pages/MyQueries/AddQueries"
 import All_Queries from "../pages/All_Queries"
+import RecommendationsForMe from "../pages/RecommendationsForMe"
+import PrivateRoute from "../components/PrivateRoute"
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: "/add_queries",
                 element: <AddQueries />
+            },
+            {
+                path: "/recommendations_for_me",
+                element: <PrivateRoute><RecommendationsForMe /></PrivateRoute>
             },
             {
                 path: "/queries",

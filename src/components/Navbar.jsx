@@ -25,6 +25,7 @@ const Navbar = () => {
         <>
             <NavLink to='/' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Home</a></NavLink>
             <NavLink to='/queries' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Queries</a></NavLink>
+            <NavLink to='/recommendations_for_me' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Recommendations For Me</a></NavLink>
         </>
 
     return (

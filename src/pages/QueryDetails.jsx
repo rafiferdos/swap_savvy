@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const QueryDetails = () => {
 
@@ -25,12 +24,11 @@ const QueryDetails = () => {
         console.log(recommendation)
     }
 
-    const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url } = query
+    const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count } = query
 
     return (
         <div className="container mx-auto max-w-7xl w-11/12 my-12 space-y-16">
             <div className="card lg:card-side bg-base-100 shadow-xl">
-                {/* <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" className="rounded-3xl" alt="Album" /></figure> */}
                 <figure className="max-w-2xl"><img src={product_image_url} alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="card-title text-primary">{query_title}</h2>
@@ -43,6 +41,8 @@ const QueryDetails = () => {
                     </div>
                     {/* eslint-disable-next-line react/prop-types */}
                     <p className="opacity-70"><span className="font-extrabold">Boycott Reason: </span>{boycott_reason}</p>
+                    <p className="opacity-70"><span className="font-extrabold">Recommendation Count: </span>{recommendation_count}</p>
+                    <p className="opacity-70"><span className="font-extrabold">Date Posted: </span>{datePosted}</p>
                     <h4 className="opacity-60">Created By: </h4>
                     <div className="flex items-center justify-start gap-4">
                         <div className="avatar">

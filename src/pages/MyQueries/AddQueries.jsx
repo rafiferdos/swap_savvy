@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddQueries = () => {
 
     const {user} = useContext(AuthContext)
-
 
     const {
         register,
@@ -32,15 +33,30 @@ const AddQueries = () => {
             user_display_name: userDisplayName,
             datePosted: `${dateString}`,
             timePosted: `${timeString}`,
-            recommendationCount: 0
+            recommendation_count: 0
         }
-        console.log(query)
+        
+        try {
+            axios.post(`${import.meta.env.VITE_API_URL}/queries`, query)
+            .then((response) => {
+                console.log(response)
+                if(response.status === 200) {
+                    toast.success('Query Added!')
+
+                }
+            })
+            .then(() => {
+                document.getElementById('query-form').reset()
+            })
+        }catch (error) {
+            console.log(error)
+        }
     }
     return (
         <div className="my-12">
             <div className="lg:w-8/12 w-11/12 mx-auto text-center my-12 rounded-3xl flex flex-col gap-4">
                 <h1 className="md:text-4xl text-2xl text-info text-center mx-auto font-extrabold md:w-5/6 my-8">Add Your Query</h1>
-                <form onSubmit={handleSubmit(onSubmit)} className="bg-base-200 px-3 py-7 md:p-8 rounded-3xl mb-5 flex justify-center items-center flex-col space-y-4">
+                <form id="query-form" onSubmit={handleSubmit(onSubmit)} className="bg-base-200 px-3 py-7 md:p-8 rounded-3xl mb-5 flex justify-center items-center flex-col space-y-4">
                     <label className="form-control w-full max-w-xl">
                         <div className="label">
                             <span className="label-text">Product Name</span>

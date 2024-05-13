@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AddQueries = () => {
+
+    const {user} = useContext(AuthContext)
+
+
     const {
         register,
         handleSubmit,
@@ -8,7 +14,27 @@ const AddQueries = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data)
+        const userEmail = user.email
+        const userImgURL = user.photoURL
+        const userDisplayName = user.displayName
+
+        // get time and send time with the data, current time
+
+        const date = new Date();
+        const dateString = date.toLocaleDateString('en-GB'); // format as dd/mm/yyyy
+        const timeString = date.toLocaleTimeString(); // format as hh:mm:ss
+        
+
+        const query = {
+            ...data,
+            user_email: userEmail,
+            user_img_url: userImgURL,
+            user_display_name: userDisplayName,
+            datePosted: `${dateString}`,
+            timePosted: `${timeString}`,
+            recommendationCount: 0
+        }
+        console.log(query)
     }
     return (
         <div className="my-12">
@@ -50,7 +76,7 @@ const AddQueries = () => {
                         <textarea className="textarea textarea-warning max-w-xl" placeholder="Boycotting Reason Details" {...register("boycott_reason")}></textarea>
                         {errors.boycott_reason && <span className='text-error'>This field is required</span>} 
                     </label>
-                    <button type="submit" className="btn btn-block max-w-xl btn-accent">Add Query</button>
+                    <button type="submit" className="btn btn-block max-w-xl btn-accent rounded-2xl">Add Query</button>
                 </form>
             </div>
         </div>

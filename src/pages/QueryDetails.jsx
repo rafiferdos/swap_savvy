@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 const QueryDetails = () => {
@@ -12,16 +14,37 @@ const QueryDetails = () => {
 
     const query = useLoaderData()
     const onSubmit = async (data) => {
-        // add _id, product_name, product_brand, query_title, boycott_reason with the data
+        const date = new Date();
+        const dateString = date.toLocaleDateString('en-GB'); // format as dd/mm/yyyy
+        const timeString = date.toLocaleTimeString(); // format as hh:mm:ss
+
         const recommendation = {
             ...data,
             old_id: query._id,
             product_name: query.product_name,
             product_brand: query.product_brand,
             query_title: query.query_title,
-            boycott_reason: query.boycott_reason
+            boycott_reason: query.boycott_reason,
+            datePosted: `${dateString}`,
+            timePosted: `${timeString}`,
         }
         console.log(recommendation)
+        
+        try {
+            axios.post(`${import.meta.env.VITE_API_URL}/recommendations`, recommendation)
+            .then((response) => {
+                console.log(response)
+                if(response.status === 200) {
+                    toast.success('Recommendation Added!')
+                }
+            })
+            .then(() => {
+                document.getElementById('recommendation-form').reset()
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
     const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count } = query
@@ -59,7 +82,7 @@ const QueryDetails = () => {
             </div>
             <div className="space-y-10 flex flex-col mx-auto lg:w-[40rem]">
                 <h1 className="text-secondary text-2xl md:text-5xl text-center">Add A Recommendation</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form id="recommendation-form" onSubmit={handleSubmit(onSubmit)}>
                     <label className="form-control w-full">
                         <div className="label">
                             <span className="label-text">Recommendation Title</span>
@@ -84,7 +107,6 @@ const QueryDetails = () => {
                     <textarea className="textarea textarea-warning w-full my-7" placeholder="Recommendation Reason Details" {...register("recommendation_reason")}></textarea>
                     {errors.recommendation_reason && <span className='text-error'>This field is required</span>}
                     <div className="w-full flex justify-center">
-
                         <button type="submit" className="btn btn-primary btn-outline rounded-2xl btn-wide">Add Recommendation</button>
                     </div>
                 </form>

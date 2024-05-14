@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import registerImg from '../../assets/images/registerBanner.jpeg';
 import logo from '../../assets/images/logo.png'
 import { AuthContext } from '../../provider/AuthProvider';
@@ -9,9 +9,11 @@ import { useForm } from 'react-hook-form';
 // import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
-
+    
+    const { signInWithGoogle, createUser, setUser, updateUserProfile, user, loading } = useContext(AuthContext)
     const navigate = useNavigate()
-    const { signInWithGoogle, createUser, setUser, updateUserProfile } = useContext(AuthContext)
+    const location = useLocation()
+    const from = location.state || '/'
 
     //* google sign in
     const handleGoogleSignIn = async () => {
@@ -19,7 +21,7 @@ const Register = () => {
             const userCredential = await signInWithGoogle();
             const user = userCredential.user;
             toast.success(`Signed In as ${user.displayName}`)
-            navigate('/')
+            navigate(from, { replace: true })
         }
         catch (err) {
             toast.error(err?.message)
@@ -65,6 +67,8 @@ const Register = () => {
             toast.error(err?.message)
         }
     }
+
+    if (user || loading) return 
 
     return (
         <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">

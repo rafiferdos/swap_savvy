@@ -1,16 +1,25 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/images/loginBanner.jpg';
 import logo from '../../assets/images/logo.png'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 const Login = () => {
 
-    const { signIn, signInWithGoogle, setUser } = useContext(AuthContext);
-
+    const { signIn, signInWithGoogle, setUser, user, loading } = useContext(AuthContext);
+    
+    const location = useLocation()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [navigate, user])
+
+    const from = location.state || '/'
 
     //* google sign in
     const handleGoogleSignIn = async () => {
@@ -18,7 +27,7 @@ const Login = () => {
             const userCredential = await signInWithGoogle();
             const user = userCredential.user;
             toast.success(`Signed In as ${user.displayName}`)
-            navigate('/')
+            navigate(from, {replace: true})
         }
         catch (err) {
             toast.error(err?.message)
@@ -60,6 +69,7 @@ const Login = () => {
         );
     }
 
+    if (user || loading) return 
 
     return (
         <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">

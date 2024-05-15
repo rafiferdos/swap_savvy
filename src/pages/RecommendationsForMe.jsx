@@ -12,7 +12,7 @@ const RecommendationsForMe = () => {
     const [recommendationsForMe, setRecommendationsForMe] = useState([])
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/${user.email}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/recommendations_forme/${user.email}`)
             .then((response) => {
                 setRecommendationsForMe(response.data);
             })
@@ -23,8 +23,8 @@ const RecommendationsForMe = () => {
 
     return (
         <div className="container mx-auto max-w-7xl w-11/12 my-12">
-            <div className="overflow-x-auto flex flex-col gap-9 items-center justify-center w-full ">
-                <h1 className="text-2xl md:text-5xl font-bold text-center text-accent">Recommendations For Me</h1>
+            <h1 className="text-2xl md:text-5xl font-bold text-center text-accent my-8">Recommendations For Me</h1>
+            <div className="overflow-x-auto flex-col gap-9 ">
                 <table className="table ">
                     {/* head */}
                     <thead className="bg-base-100">

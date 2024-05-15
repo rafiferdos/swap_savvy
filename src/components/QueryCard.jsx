@@ -1,9 +1,51 @@
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 // eslint-disable-next-line react/prop-types
 const QueryCard = ({ query }) => {
     // eslint-disable-next-line react/prop-types
     const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, recommendation_count, user_email, user_img_url, user_display_name, datePosted } = query
+
+    const { user } = useContext(AuthContext)
+
+    const [hasRecommended, setHasRecommended] = useState(false)
+
+    useEffect(() => {
+        const checkRecommendation = async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/recommendations/${user.email}`)
+
+            //same user can recommended only once
+            const hasRecommended = data.find(recommendation => recommendation.old_id === _id)
+            if (hasRecommended) {
+                setHasRecommended(true);
+                localStorage.setItem(`recommended-${_id}`, 'true'); // Save to local storage
+            }
+        };
+
+        if (user) {
+            checkRecommendation();
+        } else {
+            // Check local storage
+            const recommended = localStorage.getItem(`recommended-${_id}`);
+            if (recommended) {
+                setHasRecommended(true);
+            }
+        }
+    }, [user, _id]);
+
+
+    const handleRecommend = async () => {
+        try {
+            const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/queries/${_id}/recommend`, { query_id: _id, user_email: user.email });
+            setHasRecommended(true);
+            localStorage.setItem(`recommended-${_id}`, 'true'); // Save to local storage
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="card lg:max-w-96 bg-base-200 shadow-2xl">
@@ -23,7 +65,13 @@ const QueryCard = ({ query }) => {
                 <p className="opacity-70">Date added: <span className="font-bold">{datePosted}</span></p>
                 <div className="card-actions mt-4 w-full">
                     <Link to={`/query_details/${_id}`} className="btn btn-accent btn-block btn-outline rounded-2xl">View Details</Link>
-                    <button className="btn btn-warning btn-block btn-outline rounded-2xl">Recommend</button>
+                    <button
+                        onClick={handleRecommend}
+                        disabled={hasRecommended}
+                        className="btn btn-warning btn-block btn-outline rounded-2xl"
+                    >
+                        {hasRecommended ? 'Recommended' : 'Recommend'}
+                    </button>
                 </div>
                 <hr className="my-5 border-gray-400 border-dotted" />
                 <div className="flex items-center justify-start gap-4">

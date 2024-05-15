@@ -12,7 +12,7 @@ const All_Queries = () => {
             setQueries(data)
         }
         getData()
-    }, [])
+    }, [queries])
 
     return (
         <div className="container mx-auto w-11/12 max-w-7xl">

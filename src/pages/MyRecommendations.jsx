@@ -62,7 +62,7 @@ const MyRecommendations = () => {
                 </div>
                 <div className="w-full">
                     <div className="overflow-x-auto">
-                        <table className="table table-lg">
+                        <table className="table table-sm md:table-lg">
                             {/* head */}
                             <thead>
                                 <tr>

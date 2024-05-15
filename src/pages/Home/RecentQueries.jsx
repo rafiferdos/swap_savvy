@@ -15,7 +15,7 @@ const RecentQueries = () => {
 
                 setQueries(sortedQueries);
             })
-    }, []);
+    }, [queries]);
 
 
     return (

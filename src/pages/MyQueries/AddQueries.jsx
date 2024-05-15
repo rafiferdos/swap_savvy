@@ -22,6 +22,7 @@ const AddQueries = () => {
         // get time and send time with the data, current time
 
         const date = new Date();
+        const createdAt = date.toISOString(); // format as yyyy-mm-ddThh:mm:ss.sssZ
         const dateString = date.toLocaleDateString('en-GB'); // format as dd/mm/yyyy
         const timeString = date.toLocaleTimeString(); // format as hh:mm:ss
         
@@ -33,7 +34,8 @@ const AddQueries = () => {
             user_display_name: userDisplayName,
             datePosted: `${dateString}`,
             timePosted: `${timeString}`,
-            recommendation_count: 0
+            recommendation_count: 0,
+            createdAt: `${createdAt}`
         }
         
         try {

@@ -22,9 +22,6 @@ const MyRecommendations = () => {
             })
     }, [userEmail, recommendations]);
 
-    // get _id from recommendation by mapping
-    // const recommendationId = recommendations.map((recommendation) => recommendation._id)
-
     const handleDelete = (_id) => {
         Swal.fire({
             title: 'Are you sure?',

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
@@ -53,12 +53,22 @@ const QueryDetails = () => {
         }
     }
 
+
     const { product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count } = query
+
+    const [recommendations, setRecommendations] = useState([])
+    // get all recommendations by query id 
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API_URL}/recommendations`)
+            .then((response) => {
+                setRecommendations(response.data)
+            })
+    }, [user, recommendations])
 
     return (
         <div className="container mx-auto max-w-7xl w-11/12 my-12 space-y-16">
             <div className="card lg:card-side bg-base-100 shadow-xl">
-                <figure className="max-w-2xl"><img src={product_image_url} alt="Album" /></figure>
+                <figure className="max-w-2xl"><img className="rounded" src={product_image_url} alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="card-title text-primary">{query_title}</h2>
                     <div className="flex flex-wrap items-center gap-2">
@@ -85,6 +95,34 @@ const QueryDetails = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+
+            <div>
+                <h1 className="text-primary text-2xl md:text-5xl text-center my-8 flex items-center justify-center gap-2">Recommendations <div className="badge badge-lg badge-secondary">{recommendations.length}</div></h1>
+                <div className="grid grid-cols-1 gap-4">
+                    {recommendations.map((recommendation) => (
+                        // eslint-disable-next-line react/jsx-key
+                        <div className="shadow-xl flex items-center flex-col md:flex-row">
+                            <figure className="p-6 w-56"><img src={recommendation?.product_img_url || 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'} alt="Album" /></figure>
+                            <div className="card-body">
+                                <h2 className="card-title text-primary">{recommendation.title}</h2>
+                                <p className="opacity-70">{recommendation.recommendation_reason}</p>
+                                <div className="flex items-center justify-start gap-4">
+                                    <div className="avatar">
+                                        <div className="w-8 md:w-9 rounded-full ring ring-orange-400 ring-offset-base-100 ring-offset-2">
+                                            <img src={recommendation.user_img_url} />
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col justify-start">
+                                        <p className="opacity-70">Recommended By: <span className="font-extrabold">{recommendation.user_display_name}</span></p>
+                                        <p className="opacity-50">{recommendation.user_email}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
             </div>
             <div className="space-y-10 flex flex-col mx-auto lg:w-[40rem]">
                 <h1 className="text-secondary text-2xl md:text-5xl text-center">Add A Recommendation</h1>

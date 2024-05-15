@@ -20,7 +20,7 @@ const MyRecommendations = () => {
             .catch((error) => {
                 console.log(error)
             })
-    }, [userEmail]);
+    }, [userEmail, recommendations]);
 
     // get _id from recommendation by mapping
     // const recommendationId = recommendations.map((recommendation) => recommendation._id)
@@ -38,7 +38,6 @@ const MyRecommendations = () => {
             if (result.isConfirmed) {
                 axios.delete(`${import.meta.env.VITE_API_URL}/recommendations/${_id}`)
                     .then((response) => {
-                        console.log(response)
                         if (response.status === 200) {
                             toast.success('Recommendation Deleted!')
                         }

@@ -5,6 +5,7 @@ import axios from "axios";
 const All_Queries = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [queries, setQueries] = useState([])
+    const [layout, setLayout] = useState('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6')
 
     const searchInputRef = useRef(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -36,6 +37,13 @@ const All_Queries = () => {
         query.query_title && query.query_title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const handleLayoutChange = () => {
+        if (layout === 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6') {
+            setLayout('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-6')
+        } else {
+            setLayout('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6')
+        }
+    }
 
     return (
         <div className="container mx-auto w-11/12 max-w-7xl">
@@ -49,16 +57,19 @@ const All_Queries = () => {
                         <kbd className="kbd kbd-sm">K</kbd>
                     </label>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {
-                isLoading ? (
-                    <p>Loading...</p>
-                ) : (
-                    filteredQueries.map((query) => {
-                        return <QueryCard query={query} key={query._id} />
-                    })
-                )
-            }
+                <div className="w-full flex items-center justify-end">
+                    <input type="checkbox" aria-label="Toggle Layout" className="btn btn-secondary" onChange={handleLayoutChange} />
+                </div>
+                <div className={layout}>
+                    {
+                        isLoading ? (
+                            <p>Loading...</p>
+                        ) : (
+                            filteredQueries.map((query) => {
+                                return <QueryCard query={query} key={query._id} />
+                            })
+                        )
+                    }
                 </div>
             </div>
         </div>

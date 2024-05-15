@@ -7,7 +7,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const QueryDetails = () => {
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const {
         register,
@@ -35,18 +35,18 @@ const QueryDetails = () => {
             user_email: user.email,
             user_img_url: user.photoURL
         }
-        
+
         try {
             axios.post(`${import.meta.env.VITE_API_URL}/recommendations`, recommendation)
-            .then((response) => {
-                console.log(response)
-                if(response.status === 200) {
-                    toast.success('Recommendation Added!')
-                }
-            })
-            .then(() => {
-                document.getElementById('recommendation-form').reset()
-            })
+                .then((response) => {
+                    console.log(response)
+                    if (response.status === 200) {
+                        toast.success('Recommendation Added!')
+                    }
+                })
+                .then(() => {
+                    document.getElementById('recommendation-form').reset()
+                })
         }
         catch (error) {
             console.log(error)
@@ -54,16 +54,30 @@ const QueryDetails = () => {
     }
 
 
-    const { product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count } = query
+    const { product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count, _id } = query
 
     const [recommendations, setRecommendations] = useState([])
     // get all recommendations by query id 
+    // useEffect(() => {
+    //     axios.get(`${import.meta.env.VITE_API_URL}/recommendations/${query.old_id}`)
+    //         .then((response) => {
+    //             setRecommendations(response.data)
+    //         })
+    // }, [user, query.old_id])
+
+    // recommendations.map((r) => { console.log(r)})
+
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/recommendations`)
+
+        axios.get(`${import.meta.env.VITE_API_URL}/recommendations/id/${_id}`)
             .then((response) => {
-                setRecommendations(response.data)
+
+                setRecommendations(response.data);
             })
-    }, [user, recommendations])
+            .catch((error) => {
+                console.error('Error fetching recommendations:', error);
+            });
+    }, [_id, recommendations]);
 
     return (
         <div className="container mx-auto max-w-7xl w-11/12 my-12 space-y-16">
@@ -100,11 +114,18 @@ const QueryDetails = () => {
 
             <div>
                 <h1 className="text-primary text-2xl md:text-5xl text-center my-8 flex items-center justify-center gap-2">Recommendations <div className="badge badge-lg badge-secondary">{recommendations.length}</div></h1>
+                {
+                    recommendations.length === 0 && <div className="flex items-center justify-center h-24 bg-neutral-content rounded-2xl my-4">
+                        <h1 className="text-primary text-3xl">No Recommendations for this query</h1>
+                    </div>
+                }
                 <div className="grid grid-cols-1 gap-4">
                     {recommendations.map((recommendation) => (
                         // eslint-disable-next-line react/jsx-key
                         <div className="shadow-xl flex items-center flex-col md:flex-row">
-                            <figure className="p-6 w-56"><img src={recommendation?.product_img_url || 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'} alt="Album" /></figure>
+                            <figure className="p-6 w-56 rounded"><img className="rounded-3xl" src={recommendation?.product_image_url}
+                                onError={(e) => { e.target.onerror = null; e.target.src = "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg" }}
+                                alt="Album" referrerPolicy="no-referrer"/></figure>
                             <div className="card-body">
                                 <h2 className="card-title text-primary">{recommendation.title}</h2>
                                 <p className="opacity-70">{recommendation.recommendation_reason}</p>
@@ -122,7 +143,7 @@ const QueryDetails = () => {
                             </div>
                         </div>
                     ))}
-                    </div>
+                </div>
             </div>
             <div className="space-y-10 flex flex-col mx-auto lg:w-[40rem]">
                 <h1 className="text-secondary text-2xl md:text-5xl text-center">Add A Recommendation</h1>

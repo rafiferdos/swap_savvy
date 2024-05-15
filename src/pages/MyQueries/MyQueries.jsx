@@ -15,7 +15,8 @@ const MyQueries = () => {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/queries/${userEmail}`)
             .then((response) => {
-                setMyQueries(response.data)
+                const sortedData = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setMyQueries(sortedData)
             })
             .catch((error) => {
                 console.log(error)

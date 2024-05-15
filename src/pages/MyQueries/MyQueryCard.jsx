@@ -14,7 +14,7 @@ const MyQueryCard = ({ query }) => {
     } = useForm()
 
     // eslint-disable-next-line react/prop-types
-    const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, recommendation_count, user_email, user_img_url, user_display_name } = query
+    const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, recommendation_count, user_email, user_img_url, user_display_name, datePosted } = query
 
     const onSubmit = (data) => {
         const updatedQuery = {
@@ -81,6 +81,7 @@ const MyQueryCard = ({ query }) => {
                 {/* eslint-disable-next-line react/prop-types */}
                 <p className="opacity-70"><span className="font-extrabold">Reason: </span>{boycott_reason.substring(0, 80)}...</p>
                 <p className="opacity-70">Recommendation Count: {recommendation_count}</p>
+                <p className="opacity-70">Date Posted: {datePosted}</p>
                 <div className="card-actions mt-4 w-full">
                     <Link to={`/query_details/${_id}`} className="btn btn-accent btn-block btn-outline rounded-2xl">View Details</Link>
                     <div className="flex gap-2 items-center justify-around w-full">

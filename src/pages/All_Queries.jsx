@@ -50,20 +50,21 @@ const All_Queries = () => {
             <div className="flex flex-col gap-6 items-center justify-center my-12">
                 <h1 className="text-primary text-2xl md:text-4xl lg:text-6xl font-extrabold mb-12">All Queries</h1>
                 <div className="p-4 bg-base-200 rounded-xl">
-                    <label className="input input-bordered flex items-center gap-2">
-                        <h2 className="opacity-70">Query Title: </h2>
-                        <input value={searchTerm} ref={searchInputRef} onChange={e => setSearchTerm(e.target.value)} type="text" className="grow" placeholder="Just Type..." />
-                        <kbd className="kbd kbd-sm">⌘</kbd>
-                        <kbd className="kbd kbd-sm">K</kbd>
+                    <label className="input input-sm md:input-md lg:input-lg input-bordered flex items-center gap-2">
+                        <h2 className="opacity-70 hidden md:block">Query Title: </h2>
+                        <h2 className="opacity-70 block md:hidden">Title: </h2>
+                        <input value={searchTerm} ref={searchInputRef} onChange={e => setSearchTerm(e.target.value)} type="text" className="grow md:w-auto" placeholder="Just Type..." />
+                        <kbd className="kbd kbd-sm hidden md:flex">⌘</kbd>
+                        <kbd className="kbd kbd-sm hidden md:flex">K</kbd>
                     </label>
                 </div>
-                <div className="w-full flex items-center justify-end">
+                <div className="w-full md:flex items-center justify-end hidden">
                     <input type="checkbox" aria-label="Toggle Layout" className="btn btn-secondary" onChange={handleLayoutChange} />
                 </div>
                 <div className={layout}>
                     {
                         isLoading ? (
-                            <p>Loading...</p>
+                            <div className="loading-infinity loading loading-lg text-primary"></div>
                         ) : (
                             filteredQueries.map((query) => {
                                 return <QueryCard query={query} key={query._id} />

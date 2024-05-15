@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 // eslint-disable-next-line react/prop-types
@@ -11,6 +11,8 @@ const QueryCard = ({ query }) => {
     const { user } = useContext(AuthContext)
 
     const [hasRecommended, setHasRecommended] = useState(false)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkRecommendation = async () => {
@@ -37,6 +39,10 @@ const QueryCard = ({ query }) => {
 
 
     const handleRecommend = async () => {
+        if (!user) {
+            navigate('/login');
+            return;
+        }
         try {
             const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/queries/${_id}/recommend`, { query_id: _id, user_email: user.email });
             setHasRecommended(true);

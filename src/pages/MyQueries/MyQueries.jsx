@@ -10,7 +10,6 @@ const MyQueries = () => {
     const { user } = useContext(AuthContext)
     const [myQueries, setMyQueries] = useState([])
     const userEmail = user.email
-    console.log(userEmail)
 
     // get all queries by user email
     useEffect(() => {

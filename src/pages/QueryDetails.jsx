@@ -35,7 +35,6 @@ const QueryDetails = () => {
             user_email: user.email,
             user_img_url: user.photoURL
         }
-        console.log(recommendation)
         
         try {
             axios.post(`${import.meta.env.VITE_API_URL}/recommendations`, recommendation)

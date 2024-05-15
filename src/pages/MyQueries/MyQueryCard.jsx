@@ -28,7 +28,6 @@ const MyQueryCard = ({ query }) => {
 
         axios.put(`${import.meta.env.VITE_API_URL}/queries/${_id}`, updatedQuery)
             .then((response) => {
-                console.log(response)
                 if (response.status === 200) {
                     toast.success('Query Updated!')
                     document.getElementById('query-form').reset()

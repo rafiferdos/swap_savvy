@@ -1,9 +1,13 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const QueryDetails = () => {
+
+    const {user} = useContext(AuthContext)
 
     const {
         register,
@@ -27,6 +31,9 @@ const QueryDetails = () => {
             boycott_reason: query.boycott_reason,
             datePosted: `${dateString}`,
             timePosted: `${timeString}`,
+            user_display_name: user.displayName,
+            user_email: user.email,
+            user_img_url: user.photoURL
         }
         console.log(recommendation)
         
@@ -47,7 +54,7 @@ const QueryDetails = () => {
         }
     }
 
-    const { _id, product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count } = query
+    const { product_name, product_brand, product_image_url, query_title, boycott_reason, user_display_name, user_email, user_img_url, datePosted, recommendation_count } = query
 
     return (
         <div className="container mx-auto max-w-7xl w-11/12 my-12 space-y-16">

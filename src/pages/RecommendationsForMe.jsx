@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
 
 const RecommendationsForMe = () => {
 
@@ -22,54 +23,57 @@ const RecommendationsForMe = () => {
     }, [user.email, recommendationsForMe]);
 
     return (
-        <div className="container mx-auto max-w-7xl w-11/12 my-12">
-            <h1 className="text-2xl md:text-5xl font-bold text-center text-accent my-8">Recommendations For Me</h1>
-            <div className="overflow-x-auto flex-col gap-9 ">
-                <table className="table ">
-                    {/* head */}
-                    <thead className="bg-base-100">
-                        <tr>
-                            <th>Recommended By <span className="badge badge-secondary ml-1">{recommendationsForMe.length}</span></th>
-                            <th>Details</th>
-                            <th>Date</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-base-200">
-                        {
-                            recommendationsForMe.map((recommendation) => {
-                                return (
-                                    <tr key={recommendation._id}>
-                                        <td>
-                                            <div className="flex items-center gap-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src={recommendation.user_img_url} alt="Avatar Tailwind CSS Component" />
+        <Fade>
+
+            <div className="container mx-auto max-w-7xl w-11/12 my-12">
+                <h1 className="text-2xl md:text-5xl font-bold text-center text-accent my-8">Recommendations For Me</h1>
+                <div className="overflow-x-auto flex-col gap-9 ">
+                    <table className="table ">
+                        {/* head */}
+                        <thead className="bg-base-100">
+                            <tr>
+                                <th>Recommended By <span className="badge badge-secondary ml-1">{recommendationsForMe.length}</span></th>
+                                <th>Details</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-base-200">
+                            {
+                                recommendationsForMe.map((recommendation) => {
+                                    return (
+                                        <tr key={recommendation._id}>
+                                            <td>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="avatar">
+                                                        <div className="mask mask-squircle w-12 h-12">
+                                                            <img src={recommendation.user_img_url} alt="Avatar Tailwind CSS Component" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold">{recommendation.user_display_name}</div>
+                                                        <div className="text-sm opacity-50">{recommendation.user_email}</div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div className="font-bold">{recommendation.user_display_name}</div>
-                                                    <div className="text-sm opacity-50">{recommendation.user_email}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="opacity-70">
-                                            {recommendation.recommendation_reason}
-                                            <br />
-                                            <span className="badge badge-primary badge-sm">{recommendation.product_brand}</span>
-                                        </td>
-                                        <td className="opacity-60">{recommendation.datePosted}</td>
-                                        <th>
-                                            <Link to={`/query_details/${recommendation.old_id}`} className="btn btn-secondary btn-xs">Details</Link>
-                                        </th>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                                            </td>
+                                            <td className="opacity-70">
+                                                {recommendation.recommendation_reason}
+                                                <br />
+                                                <span className="badge badge-primary badge-sm">{recommendation.product_brand}</span>
+                                            </td>
+                                            <td className="opacity-60">{recommendation.datePosted}</td>
+                                            <th>
+                                                <Link to={`/query_details/${recommendation.old_id}`} className="btn btn-secondary btn-xs">Details</Link>
+                                            </th>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </Fade>
     );
 };
 

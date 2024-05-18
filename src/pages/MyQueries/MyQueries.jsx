@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import MyQueryCard from './MyQueryCard';
+import { Fade } from 'react-awesome-reveal';
 
 const MyQueries = () => {
 
@@ -25,6 +26,8 @@ const MyQueries = () => {
 
     return (
         <div className="my-12">
+            <Fade>
+
             <div className="lg:w-8/12 w-11/12 mx-auto text-center my-12 min-h-56 rounded-3xl flex flex-col gap-4 items-center justify-center" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: '70%' }}>
                 <h1 className='md:text-4xl text-2xl text-black font-extrabold md:w-5/6'>Still haven&apos;t added any queries? Let&apos;s add</h1>
                 <Link className='btn btn-secondary btn-sm md:btn-lg btn-wide' to='/add_queries'>Add Queries</Link>
@@ -33,6 +36,7 @@ const MyQueries = () => {
                 <h1 className="text-primary text-4xl font-extrabold">My Queries</h1>
                 <p className="opacity-60 text-secondary">View and manage all your queries in one place. Explore your created queries, track their status, and manage responses effectively</p>
             </div>
+            </Fade>
             <div className="container mx-auto w-11/12 max-w-7xl">
                 <div className="flex flex-col gap-6 items-center justify-center my-12">
                     {

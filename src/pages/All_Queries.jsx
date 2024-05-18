@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import QueryCard from "../components/QueryCard";
 import axios from "axios";
+import { Fade, Flip, JackInTheBox, Slide } from "react-awesome-reveal";
 
 const All_Queries = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -48,8 +49,10 @@ const All_Queries = () => {
     return (
         <div className="container mx-auto w-11/12 max-w-7xl">
             <div className="flex flex-col gap-6 items-center justify-center my-12">
-                <h1 className="text-primary text-2xl md:text-4xl lg:text-6xl font-extrabold mb-12">All Queries</h1>
-                <div className="p-4 bg-base-200 rounded-xl">
+                <Slide triggerOnce={true} direction="right">
+                    <h1 className="text-primary text-2xl md:text-4xl lg:text-6xl font-extrabold mb-12">All Queries</h1>
+                </Slide>
+                <Fade triggerOnce={true} direction="up" className="p-4 bg-base-200 rounded-xl">
                     <label className="input input-sm md:input-md lg:input-lg input-bordered flex items-center gap-2">
                         <h2 className="opacity-70 hidden md:block">Query Title: </h2>
                         <h2 className="opacity-70 block md:hidden">Title: </h2>
@@ -57,10 +60,12 @@ const All_Queries = () => {
                         <kbd className="kbd kbd-sm hidden md:flex">⌘</kbd>
                         <kbd className="kbd kbd-sm hidden md:flex">K</kbd>
                     </label>
-                </div>
-                <div className="w-full md:flex items-center justify-end hidden">
-                    <input type="checkbox" aria-label="Toggle Layout" className="btn btn-secondary" onChange={handleLayoutChange} />
-                </div>
+                </Fade>
+                <Fade delay={500} direction="up">
+                    <div className="w-full md:flex items-center justify-end hidden">
+                        <input type="checkbox" aria-label="Toggle Layout" className="btn btn-secondary" onChange={handleLayoutChange} />
+                    </div>
+                </Fade>
                 <div className={layout}>
                     {
                         isLoading ? (

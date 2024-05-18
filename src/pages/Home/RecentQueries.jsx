@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import QueryCard from "../../components/QueryCard";
+import { JackInTheBox } from "react-awesome-reveal";
 
 const RecentQueries = () => {
 
@@ -20,7 +21,10 @@ const RecentQueries = () => {
 
     return (
         <div className="container mx-auto w-11/12 max-w-7xl">
-            <h1 className="text-center text-3xl md:text-5xl text-secondary font-extrabold mb-12">Recent Queries</h1>
+            <JackInTheBox triggerOnce={true}>
+
+                <h1 className="text-center text-3xl md:text-5xl text-secondary font-extrabold mb-12">Recent Queries</h1>
+            </JackInTheBox>
             <div className="flex items-center justify-center">
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
                     {

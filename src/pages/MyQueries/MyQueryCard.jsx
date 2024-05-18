@@ -72,7 +72,7 @@ const MyQueryCard = ({ query }) => {
 
     return (
         <Fade>
-            <Tilt className="card lg:w-96 bg-base-300 shadow-2xl background-stripes parallax-effect-glare-scale" perspective={700} glareEnable={true} glareMaxOpacity={0.45} transitionSpeed={2000}>
+            <Tilt className="card lg:w-96 bg-base-300 shadow-2xl background-stripes parallax-effect-glare-scale pb-8" perspective={700} glareEnable={true} glareMaxOpacity={0.45} transitionSpeed={2000}>
                 <figure><img src={product_image_url} alt="Shoes" /></figure>
                 <div className="card-body inner-element">
                     <h2 className="card-title text-primary">{query_title}</h2>

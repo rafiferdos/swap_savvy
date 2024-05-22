@@ -32,8 +32,10 @@
 
 :root {
   --cursor-inner-light: black;
+  /* --cursor-outer-light: gray; */
   --cursor-outer-light: rgb(214, 127, 255);
   --cursor-inner-dark: white;
+  /* --cursor-outer-dark: gray; */
   --cursor-outer-dark: rgb(101, 0, 163);
 }
 

@@ -14,27 +14,27 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider>
         <AnimatedCursor
           innerStyle={{ backgroundColor: 'var(--cursor-inner)' }}
-          outerStyle={{ backgroundColor: 'var(--cursor-outer)' }}
+          outerStyle={{ backgroundColor: 'var(--cursor-outer)', mixBlendMode: 'exclusion'}}
           hasBlendMode={true}
           innerSize={8}
           // color='193, 11, 111'
-          outerAlpha={0.4}
+          outerAlpha={0.1}
           innerScale={0.7}
           outerScale={8}
           trailingSpeed={8}
-        // clickables={[
-        //   'a',
-        //   'input[type="text"]',
-        //   'input[type="email"]',
-        //   'input[type="number"]',
-        //   'input[type="submit"]',
-        //   'input[type="image"]',
-        //   'label[for]',
-        //   'select',
-        //   'textarea',
-        //   'button',
-        //   '.link'
-        // ]}
+          clickables={[
+            'a',
+            'input[type="text"]',
+            'input[type="email"]',
+            'input[type="number"]',
+            'input[type="submit"]',
+            'input[type="image"]',
+            'label[for]',
+            'select',
+            'textarea',
+            'button',
+            '.link'
+          ]}
         />
         <RouterProvider router={router} />
         <Toaster />

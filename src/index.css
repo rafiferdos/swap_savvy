@@ -29,3 +29,20 @@
     transform: translateZ(60px);
   }
 }
+
+:root {
+  --cursor-inner-light: black;
+  --cursor-outer-light: rgb(214, 127, 255);
+  --cursor-inner-dark: white;
+  --cursor-outer-dark: rgb(101, 0, 163);
+}
+
+[data-theme="light"] {
+  --cursor-inner: var(--cursor-inner-light);
+  --cursor-outer: var(--cursor-outer-light);
+}
+
+[data-theme="dark"] {
+  --cursor-inner: var(--cursor-inner-dark);
+  --cursor-outer: var(--cursor-outer-dark);
+}

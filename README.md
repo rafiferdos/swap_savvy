@@ -22,6 +22,8 @@ This is a React application designed to serve as an Alternative Product Informat
 - Swiper
 - Tailwind CSS
 - DaisyUI
+- React Parallax Tilt
+- React Animated Cursor
 
 ## Installation
 
@@ -32,9 +34,8 @@ This is a React application designed to serve as an Alternative Product Informat
 
 ## Live Website
 
-Visit [www.abc.com](https://www.abc.com) to explore the live website and its functionalities.
+Visit [www.swapsavvy.com](https://swapsavvy-4bd63.web.app/) to explore the live website and its functionalities.
 
 ## Contributors
 
-- [Your Name](https://github.com/your-username)
-- [Collaborator Name](https://github.com/collaborator-username)
+- [Rafi Ferdos](https://github.com/rafiferdos)

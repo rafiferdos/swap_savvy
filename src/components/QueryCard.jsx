@@ -60,7 +60,13 @@ const QueryCard = ({ query }) => {
         <Fade delay={300}>
             <Tilt className="card lg:max-w-96 bg-base-300 shadow-2xl background-stripes parallax-effect-glare-scale pb-8" perspective={700} glareEnable={true} glareMaxOpacity={0.45} transitionSpeed={2000}>
                 {/* <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure> */}
-                <figure><img src={product_image_url} alt="Shoes" /></figure>
+                <figure>
+                    <img
+                        src={product_image_url}
+                        alt="product_image"
+                        onError={(e) => { e.target.onerror = null; e.target.src = "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg" }}
+                        referrerPolicy="no-referrer" />
+                </figure>
                 <div className="card-body inner-element">
                     <h2 className="card-title text-primary">{query_title}</h2>
                     <div className="flex flex-wrap items-center gap-2">

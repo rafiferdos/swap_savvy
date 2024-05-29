@@ -32,6 +32,14 @@ This is a React application designed to serve as an Alternative Product Informat
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start`
 
+## New Features and Changes
+
+1. Custom Cursor all over the website
+2. Added blank image for queries without images
+3. Added new animations for the website
+4. Added Parallax Tilt for the website for a parallel effect
+5. Refactor the toast messages style sync to the websites theme
+
 ## Live Website
 
 Visit [www.swapsavvy.com](https://swapsavvy-4bd63.web.app/) to explore the live website and its functionalities.

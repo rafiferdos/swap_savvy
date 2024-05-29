@@ -13,11 +13,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <ThemeProvider>
         <AnimatedCursor
+          style={{ zIndex: 2147483647 }}
           innerStyle={{ backgroundColor: 'var(--cursor-inner)' }}
           outerStyle={{ backgroundColor: 'var(--cursor-outer)', mixBlendMode: 'exclusion'}}
           hasBlendMode={true}
           innerSize={8}
-          // color='193, 11, 111'
           outerAlpha={0.1}
           innerScale={0.7}
           outerScale={8}

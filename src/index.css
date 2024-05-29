@@ -37,6 +37,11 @@
   --cursor-inner-dark: white;
   /* --cursor-outer-dark: gray; */
   --cursor-outer-dark: rgb(101, 0, 163);
+
+  --swal-bg-light: white;
+  --swal-text-light: black;
+  --swal-bg-dark: black;
+  --swal-text-dark: white;
 }
 
 [data-theme="light"] {
@@ -47,4 +52,14 @@
 [data-theme="dark"] {
   --cursor-inner: var(--cursor-inner-dark);
   --cursor-outer: var(--cursor-outer-dark);
+}
+
+[data-theme="light"] .my-swal {
+  background-color: var(--swal-bg-light);
+  color: var(--swal-text-light);
+}
+
+[data-theme="dark"] .my-swal {
+  background-color: var(--swal-bg-dark);
+  color: var(--swal-text-dark);
 }

@@ -4,8 +4,11 @@ import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { Fade } from "react-awesome-reveal";
+import { ThemeContext } from "@emotion/react";
 
 const MyRecommendations = () => {
+
+    const { theme } = useContext(ThemeContext)
 
     const { user } = useContext(AuthContext)
 
@@ -31,21 +34,26 @@ const MyRecommendations = () => {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it!',
+            animation: true
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`${import.meta.env.VITE_API_URL}/recommendations/${_id}`)
                     .then((response) => {
                         if (response.status === 200) {
-                            toast.success('Recommendation Deleted!')
+                            toast.success('Recommendation Deleted!', {
+                                style: {
+                                    borderRadius: '10px',
+                                    background: theme === 'dark' ? '#333' : '#fff',
+                                    color: theme === 'dark' ? '#fff' : '#333',
+                                }
+                            })
                         }
                     })
                     .catch((error) => {
                         console.log(error)
                     })
             }
-
-
         })
     }
 
@@ -64,9 +72,9 @@ const MyRecommendations = () => {
                     </Fade>
                 </div>
 
-                    <div className="w-full">
-                        <div className="overflow-x-auto">
-                            <Fade delay={1000}>
+                <div className="w-full">
+                    <div className="overflow-x-auto">
+                        <Fade delay={1000}>
 
                             <table className="table table-sm md:table-lg">
                                 {/* head */}
@@ -113,9 +121,9 @@ const MyRecommendations = () => {
                                     }
                                 </tbody>
                             </table>
-                            </Fade>
-                        </div>
+                        </Fade>
                     </div>
+                </div>
             </div>
         </div>
     );
